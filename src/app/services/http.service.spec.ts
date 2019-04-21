@@ -86,8 +86,8 @@ describe('HttpService', () => {
       "date":"2018-12-24T03:37:08.442Z",
       "first_in":"2019-04-16T16:35:23.056Z",
       "last_out":"2019-04-16T17:23:57.149Z",
-      "total_hours":14,
-      "total_works":82,
+      "total_hours":82,
+      "total_works":14,
       "first_latitude":"80.0295",
       "first_longitude":"-119.8771",
       "first_city":"Connellychester",
@@ -100,8 +100,8 @@ describe('HttpService', () => {
         "date":"2019-02-27T10:25:23.107Z",
         "first_in":"2019-04-16T09:59:38.949Z",
         "last_out":"2019-04-16T17:54:09.024Z",
-        "total_hours":12,
-        "total_works":81,
+        "total_hours":81,
+        "total_works":12,
         "first_latitude":"44.9100",
         "first_longitude":"-166.1091",
         "first_city":"Emardbury",
@@ -113,13 +113,10 @@ describe('HttpService', () => {
     let dummyno="1";
     service.employeeAttendaceDetail(dummyno).subscribe((res:any)=>{
       expect(res.length).toBeGreaterThan(0);
-      expect(parseInt(res[0].total_hours)).toBeGreaterThanOrEqual(parseInt(res.total_works));
-      let dt1 = new Date(res.first_in);
-      let dt2 = new Date(res.last_out);
-      console.log(dt1);
-      console.log(dt2);
-      
-      // expect(dt1).toBeLessThan(dt2);
+      expect(parseInt(res[0].total_hours)).toBeGreaterThanOrEqual(parseInt(res[0].total_works));
+      let dt1 = new Date(res[0].first_in).getTime();
+      let dt2 = new Date(res[0].last_out).getTime();
+      expect(dt1).toBeLessThan(dt2);
     });
     
     const request = httpMock.expectOne(global.baseUrl()+"employee/"+dummyno+"/attendance");

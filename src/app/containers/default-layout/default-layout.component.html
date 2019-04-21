@@ -2,8 +2,8 @@
  
   [navbarBrandRouterLink]="['/dashboard']"
   [fixed]="true"
-  [navbarBrandFull]="{src: 'assets/img/brand/logo.svg', width: 89, height: 25, alt: 'Logo'}"
-  [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'Logo'}"
+  [navbarBrandFull]="{src: 'assets/img/brand/logo-dummy-1140x400.png', width: 89, height: 25, alt: 'Logo'}"
+  [navbarBrandMinimized]="{src: 'assets/img/brand/images.png', width: 30, height: 30, alt: 'Logo'}"
   [sidebarToggler]="'lg'"
   [asideMenuToggler]="'lg'"
   >
@@ -29,7 +29,7 @@
         <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
         <a class="dropdown-item" href="#"><i class="fa fa-usd"></i> Payments<span class="badge badge-dark">42</span></a>
         <div class="divider"></div>
-        <a class="dropdown-item" href="#" (click)="logout()"><i class="fa fa-lock"></i> Logout</a>
+        <a class="dropdown-item log-out" href="#" (click)="logout()"><i class="fa fa-lock"></i> Logout</a>
       </div>
     </li>
   </ul>
@@ -322,5 +322,5 @@
   </app-aside> -->
 </div>
 <app-footer>
-  <span>&copy; {{nowDate | date:'yyyy' }} Lugas Adhi Prasetyo.</span>
+  &copy; {{nowDate | date:'yyyy' }} Lugas Adhi Prasetyo
 </app-footer>
