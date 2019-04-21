@@ -1,0 +1,28 @@
+<div class="row justify-content-center justify-content-md-start">
+  <div class="col-md-4">
+    <div class="dropdown-avatar d-flex">
+      <div class="img" *ngIf="avatarHiden">
+        <img src="{{avatar}}" alt="gambar_{{avatar}}" class="img img-circle">
+      </div>
+      <div class="ml-4">
+        <mat-form-field >
+          <mat-label>Select User</mat-label>
+          <mat-select  [(ngModel)]="selectedValue" (selectionChange)="getAvatar()" name="employee">
+            <mat-option [value]="employee.id" *ngFor="let employee of employees">{{employee.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 ">
+    <div class="range-date d-flex align-items-center justify-content-center">
+      <button class="btn btn-icon mindate" (click)="minDate()"><i class="fa fa-angle-left"></i></button>
+      <div>
+        <span>{{last7date | date:'mediumDate'}}</span>
+        <span>-</span>
+        <span>{{nowdate | date:'mediumDate'}}</span>
+      </div>
+      <button class="btn btn-icon adddate" (click)="addDate()"><i class="fa fa-angle-right"></i></button>
+    </div>
+  </div>
+</div>

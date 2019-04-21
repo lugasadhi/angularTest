@@ -1,0 +1,37 @@
+// If you want to override variables do it here
+@import "variables";
+
+// Import styles
+@import "~@coreui/coreui/scss/coreui";
+
+// If you want to add something do it here
+@import "custom";
+
+
+agm-map {
+  height: 300px;
+}
+
+.sidebar {
+  .nav{
+    overflow-x: hidden;
+  }
+
+  .nav-item{
+    width: 100%;
+  }
+
+  .nav-link{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+  }
+}
+
+.app-header .navbar-toggler:not(:first-child){
+  display: none !important;
+}
+.justify-content-space-between{
+  justify-content: space-between !important;
+}

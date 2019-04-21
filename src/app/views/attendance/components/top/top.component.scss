@@ -1,0 +1,14 @@
+.dropdown-avatar{
+  .img{
+    height: 50px;
+    width: 50px;
+  }
+}
+
+.mindate,
+.adddate{
+  font-size: 18px;
+  &:hover{
+    font-weight: bold;
+  }
+}

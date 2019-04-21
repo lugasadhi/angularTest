@@ -1,0 +1,101 @@
+<div class="w-100">
+  <div>
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">First In</th>
+          <th scope="col">Last Out</th>
+          <th scope="col">Total Hour</th>
+          <th scope="col">Working Hour</th>
+          <th scope="col">Status</th>
+          <th scope="col">Regularization</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of listAttendance" (click)="popRight(item)">
+          <td>{{item.date | date:'EE, dd-MM-y'}}</td>
+          <td>{{item.first_in | date:'shortTime'}}</td>
+          <td>{{item.last_out | date:'shortTime'}}</td>
+          <td><div [innerHTML]="selisih(item.first_in, item.last_out)"></div></td>
+          <td><div [innerHTML]="selisih2(item.first_in, item.last_out)"></div></td>
+          <td> <i class="fa fa-circle" [ngClass]="{'text-success': item.status,'text-warning': !item.status}" ></i> {{item.status? 'Present':'Weekend'}}</td>
+          <td>{{item.regularization}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- 
+  popup
+ -->
+
+ <div class="right-popup-side" *ngIf="poprght && detItm"  (mouseenter) ="mouseEnter() ">
+  <button class="btn-close" (click)="this.poprght = false;"><i class="fa fa-times"></i></button>
+  <div class="ttl">
+        <h3 class="display-4">
+          {{detItm.date | date:'EE, dd-MM-y'}}
+        </h3>
+   </div>
+   <div class="row" >
+     <div class="col-md-6">
+       <div class="bg-light row p-3">
+        Check-In
+       </div>
+       <div>
+         <div>
+           {{detItm.first_in | date:'shortTime'}}
+         </div>
+             
+         <div class="d-inline position-relative rsad">
+        
+            <div  class="d-inline pr-1 aaes " >
+              <i class="fa fa-map-marker pr-2"></i> {{detItm.first_city}}
+            </div>
+            <div class="map-left" id="map-ttl-left">
+              <div class="position-relative">
+                <div style="height: 300px;"
+                  leaflet 
+                  [leafletOptions]="detItm.first_map"
+                  [leafletLayers]="detItm.first_marker"
+                  (leafletMapReady)="onMapReady($event)">
+                </div>
+              </div>
+            </div>
+         </div>
+       </div>
+     </div>
+     <div class="col-md-6">
+        <div class="bg-light row p-3">
+            Check-Out
+           </div>
+           <div>
+             <div>
+                {{detItm.last_out | date:'shortTime'}}
+             </div>
+            
+             <div class="d-inline position-relative rsad">
+                   
+                <div  class="d-inline pr-1 aaes" >
+                  <i class="fa fa-map-marker pr-2"></i> {{detItm.last_city}}
+                </div>
+                <div class="map-left" id="map-ttl-right">
+                  <div class="position-relative">
+                    <div style="height: 300px;"
+                        leaflet 
+                        [leafletOptions]="detItm.last_map"
+                        [leafletLayers]="detItm.last_marker"
+                        (leafletMapReady)="onMapReady2($event)">
+                    </div>
+                  </div>
+                </div>
+             </div>
+           </div>
+     </div>
+   </div>
+   
+   <div class="bgcls" (click)="this.poprght = false;"></div>
+
+ </div>
